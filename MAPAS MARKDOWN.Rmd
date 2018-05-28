@@ -1,0 +1,1840 @@
+<!-- R Commander Markdown Template -->
+
+Replace with Main Title
+=======================
+
+### Your Name
+
+### `r as.character(Sys.Date())`
+
+```{r echo=FALSE}
+# include this code chunk as-is to set options
+knitr::opts_chunk$set(comment=NA, prompt=TRUE, out.width=750, fig.height=8, fig.width=8)
+library(Rcmdr)
+library(car)
+library(RcmdrMisc)
+```
+
+
+```{r echo=FALSE}
+# include this code chunk as-is to enable 3D graphs
+library(rgl)
+knitr::knit_hooks$set(webgl = hook_webgl)
+```
+
+
+```{r}
+Eleicao2016 <- readXL("C:/Users/Gustavo/Dropbox/scripts R/tabela.xlsx", 
+  rownames=FALSE, header=TRUE, na="", sheet="ELEICAO", stringsAsFactors=TRUE)
+```
+
+
+```{r}
+Ratings <- readXL("C:/Users/Gustavo/Dropbox/scripts R/tabela.xlsx", 
+  rownames=FALSE, header=TRUE, na="", sheet="RATINGS", 
+  stringsAsFactors=TRUE)
+```
+
+
+```{r}
+# montar mapa Ratings PL (FiveThirtyEight)
+```
+
+
+```{r}
+GeoStates <- gvisGeoChart(Ratings, "Estado", "Rating_PL",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['darkred','red','#f442b6','#a778ed','royalblue','mediumblue','navy']}",
+  
+                   backgroundColor="lightblue"))
+```
+
+
+```{r}
+plot(GeoStates)
+```
+
+
+```{r}
+# montar mapa Índice PL (FiveThirtyEight)
+```
+
+
+```{r}
+GeoStates01 <- gvisGeoChart(Ratings, "Estado", "Indice_PL",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['navy','mediumblue','royalblue','#a778ed','#f442b6','red','darkred']}",
+  
+                   backgroundColor="lightblue"))
+```
+
+
+```{r}
+plot(GeoStates01)
+```
+
+
+```{r}
+# montar mapa Ratings PVI (Cook Political)
+```
+
+
+```{r}
+GeoStates2 <- gvisGeoChart(Ratings, "Estado", "Rating_PVI",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['darkred','red','#f442b6','#a778ed','royalblue','mediumblue','navy']}",
+  
+                   backgroundColor="lightblue"))
+```
+
+
+```{r}
+plot(GeoStates2)
+```
+
+
+```{r}
+# montar mapa Índice PVI (Cook Political Report)
+```
+
+
+```{r}
+GeoStates02 <- gvisGeoChart(Ratings, "Estado", "Indice_PL",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['navy','mediumblue','royalblue','#a778ed','#f442b6','red','darkred']}",
+  
+                   backgroundColor="lightblue"))
+```
+
+
+```{r}
+plot(GeoStates02)
+```
+
+
+```{r}
+# montar mapa Índice PL (FiveThirtyEight)
+```
+
+
+```{r}
+GeoStates01 <- gvisGeoChart(Ratings, "Estado", "Indice_PL",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['navy','mediumblue','royalblue','#a778ed','#f442b6','red','darkred']}",
+  
+                   backgroundColor="lightblue"))
+```
+
+
+```{r}
+plot(GeoStates01)
+```
+
+
+```{r}
+# montar mapa Rating Médio
+```
+
+
+```{r}
+GeoStates3 <- gvisGeoChart(Ratings, "Estado", "Rat_Medio",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['darkred','red','#f442b6','#a778ed','royalblue','mediumblue','navy']}",
+  
+                   backgroundColor="lightblue"))
+```
+
+
+```{r}
+plot(GeoStates3)
+```
+
+
+```{r}
+# montar mapa Vantagem R > D
+```
+
+
+```{r}
+GeoStates4 <- gvisGeoChart(Eleicao2016, "Estado", "Vantagem_P",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['mediumblue','royalblue','#a778ed','#f442b6','red']}",
+                   backgroundColor="lightblue"))
+```
+
+
+```{r}
+plot(GeoStates4)
+```
+
+
+```{r}
+# montar mapa partido titular
+```
+
+
+```{r}
+GeoStates5 <- gvisGeoChart(Eleicao2016, "Estado", "Party_T",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['red','mediumblue']}",
+                   backgroundColor="lightblue"))
+```
+
+
+```{r}
+plot(GeoStates5)
+```
+
+
+```{r}
+# montar mapa partido eleito
+```
+
+
+```{r}
+GeoStates6 <- gvisGeoChart(Eleicao2016, "Estado", "Party_E",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['red','mediumblue']}",
+                   backgroundColor="lightblue"))
+```
+
+
+```{r}
+plot(GeoStates6)
+```
+
+
+```{r}
+# montar mapa status da cadeira (hold/take)
+```
+
+
+```{r}
+GeoStates7 <- gvisGeoChart(Eleicao2016, "Estado", "Status",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['red','royalblue','#f442b6','mediumblue']}",
+                   backgroundColor="lightblue"))
+```
+
+
+```{r}
+plot(GeoStates7)
+```
+
+
+```{r}
+# montar mapa status da cadeira (reeleição/não reeleição)
+```
+
+
+```{r}
+GeoStates8 <- gvisGeoChart(Eleicao2016, "Estado", "Reeleicao",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['darkred','green']}",
+                   backgroundColor="lightblue"))
+```
+
+
+```{r}
+plot(GeoStates8)
+```
+
+
+```{r}
+GeoStates <- gvisGeoChart(Ratings, "Estado", "Rating_PL",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['darkred','red','#f442b6','#a778ed','royalblue','mediumblue','navy']}",
+  
+                   backgroundColor="lightblue"))
+```
+
+
+```{r}
+plot(GeoStates)
+```
+
+
+```{r}
+# montar mapa Índice PL (FiveThirtyEight)
+```
+
+
+```{r}
+GeoStates01 <- gvisGeoChart(Ratings, "Estado", "Indice_PL",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['navy','mediumblue','royalblue','#a778ed','#f442b6','red','darkred']}",
+  
+                   backgroundColor="lightblue"))
+```
+
+
+```{r}
+plot(GeoStates01)
+```
+
+
+```{r}
+# montar mapa Ratings PVI (Cook Political)
+```
+
+
+```{r}
+GeoStates2 <- gvisGeoChart(Ratings, "Estado", "Rating_PVI",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['darkred','red','#f442b6','#a778ed','royalblue','mediumblue','navy']}",
+  
+                   backgroundColor="lightblue"))
+```
+
+
+```{r}
+plot(GeoStates2)
+```
+
+
+```{r}
+# montar mapa Índice PVI (Cook Political Report)
+```
+
+
+```{r}
+GeoStates02 <- gvisGeoChart(Ratings, "Estado", "Indice_PL",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['navy','mediumblue','royalblue','#a778ed','#f442b6','red','darkred']}",
+  
+                   backgroundColor="lightblue"))
+```
+
+
+```{r}
+plot(GeoStates02)
+```
+
+
+```{r}
+# montar mapa Índice PL (FiveThirtyEight)
+```
+
+
+```{r}
+GeoStates01 <- gvisGeoChart(Ratings, "Estado", "Indice_PL",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['navy','mediumblue','royalblue','#a778ed','#f442b6','red','darkred']}",
+  
+                   backgroundColor="lightblue"))
+```
+
+
+```{r}
+plot(GeoStates01)
+```
+
+
+```{r}
+# montar mapa Rating Médio
+```
+
+
+```{r}
+GeoStates3 <- gvisGeoChart(Ratings, "Estado", "Rat_Medio",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['darkred','red','#f442b6','#a778ed','royalblue','mediumblue','navy']}",
+  
+                   backgroundColor="lightblue"))
+```
+
+
+```{r}
+plot(GeoStates3)
+```
+
+
+```{r}
+# montar mapa Vantagem R > D
+```
+
+
+```{r}
+GeoStates4 <- gvisGeoChart(Eleicao2016, "Estado", "Vantagem_P",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['mediumblue','royalblue','#a778ed','#f442b6','red']}",
+                   backgroundColor="lightblue"))
+```
+
+
+```{r}
+plot(GeoStates4)
+```
+
+
+```{r}
+# montar mapa partido titular
+```
+
+
+```{r}
+GeoStates5 <- gvisGeoChart(Eleicao2016, "Estado", "Party_T",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['red','mediumblue']}",
+                   backgroundColor="lightblue"))
+```
+
+
+```{r}
+plot(GeoStates5)
+```
+
+
+```{r}
+# montar mapa partido eleito
+```
+
+
+```{r}
+GeoStates6 <- gvisGeoChart(Eleicao2016, "Estado", "Party_E",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['red','mediumblue']}",
+                   backgroundColor="lightblue"))
+```
+
+
+```{r}
+plot(GeoStates6)
+```
+
+
+```{r}
+# montar mapa status da cadeira (hold/take)
+```
+
+
+```{r}
+GeoStates7 <- gvisGeoChart(Eleicao2016, "Estado", "Status",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['red','royalblue','#f442b6','mediumblue']}",
+                   backgroundColor="lightblue"))
+```
+
+
+```{r}
+plot(GeoStates7)
+```
+
+
+```{r}
+# montar mapa status da cadeira (reeleição/não reeleição)
+```
+
+
+```{r}
+GeoStates8 <- gvisGeoChart(Eleicao2016, "Estado", "Reeleicao",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['darkred','green']}",
+                   backgroundColor="lightblue"))
+```
+
+
+```{r}
+plot(GeoStates8)
+```
+
+
+```{r}
+GeoStates7 <- gvisGeoChart(Eleicao2016, "Estado", "Status",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['red','#f442b6','royalblue','mediumblue']}",
+                   backgroundColor="lightblue"))
+```
+
+
+```{r}
+plot(GeoStates7)
+```
+
+
+```{r}
+GeoStates7 <- gvisGeoChart(Eleicao2016, "Estado", "Status",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['navajored','#f442b6','royalblue','mediumblue']}",
+                   backgroundColor="lightblue"))
+```
+
+
+```{r}
+plot(GeoStates7)
+```
+
+
+```{r}
+GeoStates7 <- gvisGeoChart(Eleicao2016, "Estado", "Status",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['#aa001f','#f442b6','#54b0f2','mediumblue']}",
+                   backgroundColor="lightblue"))
+```
+
+
+```{r}
+plot(GeoStates7)
+```
+
+
+```{r}
+GeoStates7 <- gvisGeoChart(Eleicao2016, "Estado", "Status",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['#aa001f','#f442b6','#54b0f2','mediumblue']}",
+                   backgroundColor="#8feadc"))
+```
+
+
+```{r}
+plot(GeoStates7)
+```
+
+
+```{r}
+# montar mapa Ratings PL (FiveThirtyEight)
+```
+
+
+```{r}
+GeoStates <- gvisGeoChart(Ratings, "Estado", "Rating_PL",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['darkred','#aa001f','#f442b6','#a778ed','royalblue','#1871f7','navy']}",
+  
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates)
+```
+
+
+```{r}
+# montar mapa Índice PL (FiveThirtyEight)
+```
+
+
+```{r}
+GeoStates01 <- gvisGeoChart(Ratings, "Estado", "Indice_PL",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['navy','#1871f7','royalblue','#a778ed','#f442b6','#aa001f','darkred']}",
+  
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates01)
+```
+
+
+```{r}
+# montar mapa Ratings PVI (Cook Political)
+```
+
+
+```{r}
+GeoStates2 <- gvisGeoChart(Ratings, "Estado", "Rating_PVI",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['darkred','#aa001f','#f442b6','#a778ed','royalblue','#1871f7','navy']}",
+  
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates2)
+```
+
+
+```{r}
+# montar mapa Índice PVI (Cook Political Report)
+```
+
+
+```{r}
+GeoStates02 <- gvisGeoChart(Ratings, "Estado", "Indice_PL",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['navy','#1871f7','royalblue','#a778ed','#f442b6','#aa001f','darkred']}",
+  
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates02)
+```
+
+
+```{r}
+# montar mapa Índice PL (FiveThirtyEight)
+```
+
+
+```{r}
+GeoStates01 <- gvisGeoChart(Ratings, "Estado", "Indice_PL",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['navy','#1871f7','royalblue','#a778ed','#f442b6','#aa001f','darkred']}",
+  
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates01)
+```
+
+
+```{r}
+# montar mapa Rating Médio
+```
+
+
+```{r}
+GeoStates3 <- gvisGeoChart(Ratings, "Estado", "Rat_Medio",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['darkred','red','#f442b6','#a778ed','royalblue','#1871f7','navy']}",
+  
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates3)
+```
+
+
+```{r}
+# montar mapa Vantagem R > D
+```
+
+
+```{r}
+GeoStates4 <- gvisGeoChart(Eleicao2016, "Estado", "Vantagem_P",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['#1871f7','royalblue','#a778ed','#f442b6','#aa001f']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates4)
+```
+
+
+```{r}
+# montar mapa partido titular
+```
+
+
+```{r}
+GeoStates5 <- gvisGeoChart(Eleicao2016, "Estado", "Party_T",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['#aa001f','#1871f7']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates5)
+```
+
+
+```{r}
+# montar mapa partido eleito
+```
+
+
+```{r}
+GeoStates6 <- gvisGeoChart(Eleicao2016, "Estado", "Party_E",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['#aa001f','#1871f7']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates6)
+```
+
+
+```{r}
+# montar mapa status da cadeira (hold/take)
+```
+
+
+```{r}
+GeoStates7 <- gvisGeoChart(Eleicao2016, "Estado", "Status",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['#aa001f','#f442b6','#54b0f2','#1871f7']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates7)
+```
+
+
+```{r}
+# montar mapa status da cadeira (reeleição/não reeleição)
+```
+
+
+```{r}
+GeoStates8 <- gvisGeoChart(Eleicao2016, "Estado", "Reeleicao",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['darkred','green']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates8)
+```
+
+
+```{r}
+GeoStates <- gvisGeoChart(Ratings, "Estado", "Rating_PL",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['darkred','#aa001f','#f442b6','#a778ed','royalblue','#1871f7','navy']}",
+  
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates)
+```
+
+
+```{r}
+# montar mapa Índice PL (FiveThirtyEight)
+```
+
+
+```{r}
+GeoStates01 <- gvisGeoChart(Ratings, "Estado", "Indice_PL",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['navy','#1871f7','royalblue','#a778ed','#f442b6','#aa001f','darkred']}",
+  
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates01)
+```
+
+
+```{r}
+# montar mapa Ratings PVI (Cook Political)
+```
+
+
+```{r}
+GeoStates2 <- gvisGeoChart(Ratings, "Estado", "Rating_PVI",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['darkred','#aa001f','#f442b6','#a778ed','royalblue','#1871f7','navy']}",
+  
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates2)
+```
+
+
+```{r}
+# montar mapa Índice PVI (Cook Political Report)
+```
+
+
+```{r}
+GeoStates02 <- gvisGeoChart(Ratings, "Estado", "Indice_PVI",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['navy','#1871f7','royalblue','#a778ed','#f442b6','#aa001f','darkred']}",
+  
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates02)
+```
+
+
+```{r}
+# montar mapa Rating Médio
+```
+
+
+```{r}
+GeoStates3 <- gvisGeoChart(Ratings, "Estado", "Rat_Medio",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['darkred','red','#f442b6','#a778ed','royalblue','#1871f7','navy']}",
+  
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates3)
+```
+
+
+```{r}
+# montar mapa Vantagem R > D
+```
+
+
+```{r}
+GeoStates4 <- gvisGeoChart(Eleicao2016, "Estado", "Vantagem_P",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['#1871f7','royalblue','#a778ed','#f442b6','#aa001f']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates4)
+```
+
+
+```{r}
+# montar mapa partido titular
+```
+
+
+```{r}
+GeoStates5 <- gvisGeoChart(Eleicao2016, "Estado", "Party_T",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['#aa001f','#1871f7']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates5)
+```
+
+
+```{r}
+# montar mapa partido eleito
+```
+
+
+```{r}
+GeoStates6 <- gvisGeoChart(Eleicao2016, "Estado", "Party_E",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['#aa001f','#1871f7']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates6)
+```
+
+
+```{r}
+# montar mapa status da cadeira (hold/take)
+```
+
+
+```{r}
+GeoStates7 <- gvisGeoChart(Eleicao2016, "Estado", "Status",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['#aa001f','#f442b6','#54b0f2','#1871f7']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates7)
+```
+
+
+```{r}
+# montar mapa status da cadeira (reeleição/não reeleição)
+```
+
+
+```{r}
+GeoStates8 <- gvisGeoChart(Eleicao2016, "Estado", "Reeleicao",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['darkred','green']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates8)
+```
+
+
+```{r}
+GeoStates9 <- gvisGeoChart(Eleicao2016, "Estado", "Mudanca",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['darkred','green']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates9)
+```
+
+```{r}
+# montar mapa voto republicano %
+```
+
+```{r}
+GeoStates10 <- gvisGeoChart(Eleicao2016, "Estado", "Voto_R_P",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+sizeAxis.minValue=0,
+sizeAxis.maxValue=100,
+colorAxis="{colors:['gray','#aa001f']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates10)
+```
+
+
+```{r}
+GeoStates10 <- gvisGeoChart(Eleicao2016, "Estado", "Voto_R_P",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+sizeAxis='{minValue:0, maxValue:100}',
+colorAxis="{colors:['gray','#aa001f']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates10)
+```
+
+
+```{r}
+GeoStates10 <- gvisGeoChart(Eleicao2016, "Estado", "Voto_R_P",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis.minValue=0,
+colorAxis.maxValue=100,
+colorAxis="{colors:['gray','#aa001f']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates10)
+```
+
+```{r}
+plot(GeoStates10)
+```
+
+
+```{r}
+GeoStates10 <- gvisGeoChart(Eleicao2016, "Estado", "Voto_R_P",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{minValue: 0, maxValue: 100, colors:['gray','#aa001f']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates10)
+```
+
+
+```{r}
+GeoStates10 <- gvisGeoChart(Eleicao2016, "Estado", "Voto_R_P",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{minValue: 0, maxValue: 100, colors:['snow','#aa001f']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates10)
+```
+
+
+```{r}
+GeoStates10 <- gvisGeoChart(Eleicao2016, "Estado", "Voto_R_P",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+defaultColor="gray",
+colorAxis="{minValue: 0, maxValue: 100, colors:['snow','#aa001f']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates10)
+```
+
+
+```{r}
+GeoStates10 <- gvisGeoChart(Eleicao2016, "Estado", "Voto_R_P",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{defaultColor: 'gray', minValue: 0, maxValue: 100, colors:['snow','#aa001f']}",
+  
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates10)
+```
+
+
+```{r}
+GeoStates10 <- gvisGeoChart(Eleicao2016, "Estado", "Voto_R_P",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+datalessRegionColor="gray",
+colorAxis="{minValue: 0, maxValue: 100, colors:['snow','#aa001f']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates10)
+```
+
+
+```{r}
+GeoStates11 <- gvisGeoChart(Eleicao2016, "Estado", "Voto_D_P",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+datalessRegionColor="gray",
+colorAxis="{minValue: 0, maxValue: 100, colors:['snow',#1871f7]}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates11)
+```
+
+
+```{r}
+GeoStates11 <- gvisGeoChart(Eleicao2016, "Estado", "Voto_D_P",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+datalessRegionColor="gray",
+colorAxis="{minValue: 0, maxValue: 100, colors:['snow',#1871f7]}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates11)
+```
+
+
+```{r}
+GeoStates11 <- gvisGeoChart(Eleicao2016, "Estado", "Voto_D_P",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+datalessRegionColor="gray",
+colorAxis="{minValue: 0, maxValue: 100, colors:['snow','#1871f7']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates11)
+```
+
+
+```{r}
+GeoStates11 <- gvisGeoChart(Eleicao2016, "Estado", "Voto_D_P",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+datalessRegionColor="gray",
+colorAxis="{minValue: 0, maxValue: 100, colors:['snow','#0072bf']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates11)
+```
+
+
+```{r}
+GeoStates11 <- gvisGeoChart(Eleicao2016, "Estado", "Voto_D_P",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+datalessRegionColor="gray",
+colorAxis="{minValue: 0, maxValue: 100, colors:['snow','#004472']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates11)
+```
+
+
+```{r}
+GeoStates11 <- gvisGeoChart(Eleicao2016, "Estado", "Voto_D_P",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+datalessRegionColor="gray",
+colorAxis="{minValue: 0, maxValue: 100, colors:['snow','#0064a8']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates11)
+```
+
+
+```{r}
+GeoStates <- gvisGeoChart(Ratings, "Estado", "Rating_PL",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['darkred','#aa001f','#f442b6','#a778ed','royalblue','#1871f7','navy']}",
+  
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates)
+```
+
+
+```{r}
+# montar mapa Índice PL (FiveThirtyEight)
+```
+
+
+```{r}
+GeoStates01 <- gvisGeoChart(Ratings, "Estado", "Indice_PL",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['navy','#1871f7','royalblue','#a778ed','#f442b6','#aa001f','darkred']}",
+  
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates01)
+```
+
+
+```{r}
+# montar mapa Ratings PVI (Cook Political)
+```
+
+
+```{r}
+GeoStates2 <- gvisGeoChart(Ratings, "Estado", "Rating_PVI",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['darkred','#aa001f','#f442b6','#a778ed','royalblue','#1871f7','navy']}",
+  
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates2)
+```
+
+
+```{r}
+# montar mapa Índice PVI (Cook Political Report)
+```
+
+
+```{r}
+GeoStates02 <- gvisGeoChart(Ratings, "Estado", "Indice_PVI",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['navy','#1871f7','royalblue','#a778ed','#f442b6','#aa001f','darkred']}",
+  
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates02)
+```
+
+
+```{r}
+# montar mapa Rating Médio
+```
+
+
+```{r}
+GeoStates3 <- gvisGeoChart(Ratings, "Estado", "Rat_Medio",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['darkred','red','#f442b6','#a778ed','royalblue','#1871f7','navy']}",
+  
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates3)
+```
+
+
+```{r}
+# montar mapa Vantagem R > D
+```
+
+
+```{r}
+GeoStates4 <- gvisGeoChart(Eleicao2016, "Estado", "Vantagem_P",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['#1871f7','royalblue','#a778ed','#f442b6','#aa001f']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates4)
+```
+
+
+```{r}
+# montar mapa partido titular
+```
+
+
+```{r}
+GeoStates5 <- gvisGeoChart(Eleicao2016, "Estado", "Party_T",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['#aa001f','#1871f7']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates5)
+```
+
+
+```{r}
+# montar mapa partido eleito
+```
+
+
+```{r}
+GeoStates6 <- gvisGeoChart(Eleicao2016, "Estado", "Party_E",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['#aa001f','#1871f7']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates6)
+```
+
+
+```{r}
+# montar mapa status da cadeira (hold/take)
+```
+
+
+```{r}
+GeoStates7 <- gvisGeoChart(Eleicao2016, "Estado", "Status",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['#aa001f','#f442b6','#54b0f2','#1871f7']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates7)
+```
+
+
+```{r}
+# montar mapa status da cadeira (reeleição/não reeleição)
+```
+
+
+```{r}
+GeoStates8 <- gvisGeoChart(Eleicao2016, "Estado", "Reeleicao",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['darkred','green']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates8)
+```
+
+
+```{r}
+# montar mapa mudança de partido
+```
+
+
+```{r}
+GeoStates9 <- gvisGeoChart(Eleicao2016, "Estado", "Mudanca",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+colorAxis="{colors:['darkred','green']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates9)
+```
+
+
+```{r}
+# montar mapa voto republicano %
+```
+
+
+```{r}
+GeoStates10 <- gvisGeoChart(Eleicao2016, "Estado", "Voto_R_P",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+datalessRegionColor="gray",
+colorAxis="{minValue: 0, maxValue: 100, colors:['snow','#aa001f']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates10)
+```
+
+
+```{r}
+# montar mapa voto democrata %
+```
+
+
+```{r}
+GeoStates11 <- gvisGeoChart(Eleicao2016, "Estado", "Voto_D_P",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+datalessRegionColor="gray",
+colorAxis="{minValue: 0, maxValue: 100, colors:['snow','#0064a8']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates11)
+```
+
+
+```{r}
+GeoStates <- gvisGeoChart(Ratings, "Estado", "Rating_PL",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+datalessRegionColor="gray",
+colorAxis="{colors:['darkred','#aa001f','#f442b6','#a778ed','royalblue','#1871f7','navy']}",
+  
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates)
+```
+
+
+```{r}
+# montar mapa Índice PL (FiveThirtyEight)
+```
+
+
+```{r}
+GeoStates01 <- gvisGeoChart(Ratings, "Estado", "Indice_PL",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+datalessRegionColor="gray",
+colorAxis="{colors:['navy','#1871f7','royalblue','#a778ed','#f442b6','#aa001f','darkred']}",
+  
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates01)
+```
+
+
+```{r}
+# montar mapa Ratings PVI (Cook Political)
+```
+
+
+```{r}
+GeoStates2 <- gvisGeoChart(Ratings, "Estado", "Rating_PVI",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+datalessRegionColor="gray",
+colorAxis="{colors:['darkred','#aa001f','#f442b6','#a778ed','royalblue','#1871f7','navy']}",
+  
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates2)
+```
+
+
+```{r}
+# montar mapa Índice PVI (Cook Political Report)
+```
+
+
+```{r}
+GeoStates02 <- gvisGeoChart(Ratings, "Estado", "Indice_PVI",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+datalessRegionColor="gray",
+colorAxis="{colors:['navy','#1871f7','royalblue','#a778ed','#f442b6','#aa001f','darkred']}",
+  
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates02)
+```
+
+
+```{r}
+# montar mapa Rating Médio
+```
+
+
+```{r}
+GeoStates3 <- gvisGeoChart(Ratings, "Estado", "Rat_Medio",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+datalessRegionColor="gray",
+colorAxis="{colors:['darkred','red','#f442b6','#a778ed','royalblue','#1871f7','navy']}",
+  
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates3)
+```
+
+
+```{r}
+# montar mapa Vantagem R > D
+```
+
+
+```{r}
+GeoStates4 <- gvisGeoChart(Eleicao2016, "Estado", "Vantagem_P",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+datalessRegionColor="gray",
+colorAxis="{colors:['#1871f7','royalblue','#a778ed','#f442b6','#aa001f']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates4)
+```
+
+
+```{r}
+# montar mapa partido titular
+```
+
+
+```{r}
+GeoStates5 <- gvisGeoChart(Eleicao2016, "Estado", "Party_T",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+datalessRegionColor="gray",
+colorAxis="{colors:['#aa001f','#1871f7']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates5)
+```
+
+
+```{r}
+# montar mapa partido eleito
+```
+
+
+```{r}
+GeoStates6 <- gvisGeoChart(Eleicao2016, "Estado", "Party_E",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+datalessRegionColor="gray",
+colorAxis="{colors:['#aa001f','#1871f7']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates6)
+```
+
+
+```{r}
+# montar mapa status da cadeira (hold/take)
+```
+
+
+```{r}
+GeoStates7 <- gvisGeoChart(Eleicao2016, "Estado", "Status",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+datalessRegionColor="gray",
+colorAxis="{colors:['#aa001f','#f442b6','#54b0f2','#1871f7']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates7)
+```
+
+
+```{r}
+# montar mapa status da cadeira (reeleição/não reeleição)
+```
+
+
+```{r}
+GeoStates8 <- gvisGeoChart(Eleicao2016, "Estado", "Reeleicao",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+datalessRegionColor="gray",
+colorAxis="{colors:['darkred','green']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates8)
+```
+
+
+```{r}
+# montar mapa mudança de partido
+```
+
+
+```{r}
+GeoStates9 <- gvisGeoChart(Eleicao2016, "Estado", "Mudanca",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+datalessRegionColor="gray",
+colorAxis="{colors:['darkred','green']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates9)
+```
+
+
+```{r}
+# montar mapa voto republicano %
+```
+
+
+```{r}
+GeoStates10 <- gvisGeoChart(Eleicao2016, "Estado", "Voto_R_P",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+datalessRegionColor="gray",
+colorAxis="{minValue: 0, maxValue: 100, colors:['snow','#aa001f']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates10)
+```
+
+
+```{r}
+# montar mapa voto democrata %
+```
+
+
+```{r}
+GeoStates11 <- gvisGeoChart(Eleicao2016, "Estado", "Voto_D_P",
+                          options=list(region="US", 
+                                       displayMode="regions", 
+                                       resolution="provinces",
+                                       width=600, height=400,
+datalessRegionColor="gray",
+colorAxis="{minValue: 0, maxValue: 100, colors:['snow','#0064a8']}",
+                   backgroundColor="#d1fcf9"))
+```
+
+
+```{r}
+plot(GeoStates11)
+```
+
+
